@@ -12,7 +12,7 @@ export const Appbar = ({ authorName, addBlog=true }: { authorName: string, addBl
             <div className="flex flex-col justify-center">
                 <Link to={'/blogs'}>
                     <div className="text-2xl font-semibold">
-                        Medium
+                        WritersHub
                     </div>
                 </Link>
             </div>
