@@ -416,6 +416,7 @@ export const getUsersBlogsController = async (c: Context<{
         }
 
         const page = data;
+        const userId = c.get('userId');
 
         const prisma = getPrisma(c.env.DATABASE_URL);
 
@@ -423,6 +424,9 @@ export const getUsersBlogsController = async (c: Context<{
         const skip = (page - 1) * limit;
 
         const blogs = await prisma.blog.findMany({
+            where: {
+                authorId: userId
+            },
             orderBy: {
                 title: "asc"
             },
