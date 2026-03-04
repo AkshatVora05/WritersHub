@@ -7,6 +7,7 @@ import { useGetMe } from "../hooks/indes";
 import { AppbarSkeleton } from "../components/AppbarSkeleton";
 import { ConfirmModal } from "../components/ConfirmModal";
 import { useNavigate } from "react-router-dom";
+import { CreateBlogSkeleton } from "../components/CreateBlogSkeleton";
 
 export const CreateBlog = () => {
     const [ title, setTitle ] = useState<string>("");
@@ -48,6 +49,7 @@ export const CreateBlog = () => {
     if(isLoading || isUserLoading) {
         return <div>
             <AppbarSkeleton addBlog={addBlog}></AppbarSkeleton>
+            <CreateBlogSkeleton></CreateBlogSkeleton>
         </div>
     }
     
@@ -58,7 +60,7 @@ export const CreateBlog = () => {
         </div>
         <div className="flex flex-col mt-8">
             <div className="flex justify-center">
-                <div className="max-w-5xl w-full">
+                <div className="max-w-[90vw] w-full">
                     <input onChange={(e: ChangeEvent<HTMLInputElement>) => {
                         setTitle(e.target.value)
                     }} type="text" id="helper-text" aria-describedby="helper-text-explanation" className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 hover:border-black focus:outline-none" placeholder="Title" />                
