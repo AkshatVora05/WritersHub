@@ -59,8 +59,8 @@ export const Signup = () => {
 
     return <>
         {loading && <Loading></Loading>}
-        <div className="grid grid-cols-2">
-            <div className="h-full flex justify-center">
+        <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
+            <div className="flex items-center justify-center">
                 <div className="flex flex-col justify-center">
                     <div className="text-center">
                         <AuthHeader 
@@ -69,50 +69,31 @@ export const Signup = () => {
                     </div>
                     <form onSubmit={sendRequest}>
                         <div className="mt-3 w-85">
-                            <LabelledInput 
-                                label="Email" 
-                                placeholder="john.doe@example.com" 
-                                type="email" 
-                                onChange={(e) => {
+                            <LabelledInput label="Email" placeholder="john.doe@example.com" type="email" onChange={(e) => {
                                     handleChange(e, "email");
                                 }}
                                 required={true}
                             />
-                            <LabelledInput 
-                                label="Password" 
-                                placeholder="******" 
-                                type="password" 
-                                onChange={(e) => {
+                            <LabelledInput label="Password" placeholder="******" type="password" onChange={(e) => {
                                     handleChange(e, "password");
                                 }}
                                 required={true} 
                             />
-                            <LabelledInput 
-                                label="Full Name" 
-                                placeholder="John Doe" 
-                                type="text" 
-                                onChange={(e) => {
+                            <LabelledInput label="Full Name" placeholder="John Doe" type="text" onChange={(e) => {
                                     handleChange(e, "name");
                                 }} 
                                 required={false} 
                             />
                         </div>
                         <div className="pt-2 text-center text-slate-500">
-                            <AuthLink 
-                                text="Already have an account?" 
-                                link="/signin" 
-                                linkText="Signin"
+                            <AuthLink text="Already have an account?" link="/signin" linkText="Signin"
                             />
                         </div>
-                        <AuthButton 
-                            text="Signup"
-                            type="submit"
-                            disabled={loading}
-                        />
+                        <AuthButton text="Signup" type="submit" disabled={loading} />
                     </form>
                 </div>
             </div>
-            <div>
+            <div className="bg-slate-200 hidden lg:flex items-center justify-center">
                 <Quote></Quote>
             </div>
         </div>

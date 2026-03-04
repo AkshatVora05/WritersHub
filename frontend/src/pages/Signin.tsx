@@ -60,52 +60,35 @@ export const Signin = () => {
 
     return <>
         {loading && <Loading></Loading>}
-        <div className="grid grid-cols-2">
-            <div className="h-full flex justify-center">
+        <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
+            <div className="flex items-center justify-center">
                 <div className="flex flex-col justify-center">
                     <form onSubmit={sendRequest}>
                         <div className="text-center">
-                            <AuthHeader 
-                                text={"Login to account"}
-                            />
+                            <AuthHeader text={"Login to account"} />
                         </div>
                         <div className="mt-3 w-85">
-                            <LabelledInput
-                                label="Email"
-                                placeholder="john.doe@example.com"
-                                type="email" 
-                                onChange={(e) => {
+                            <LabelledInput label="Email" placeholder="john.doe@example.com" type="email"  onChange={(e) => {
                                     handleChange(e, "email");
                                 }}
                                 required={true}
                             />
-                            <LabelledInput 
-                                label="Password"
-                                placeholder="******"
-                                type="password"
-                                onChange={(e) => {
+                            <LabelledInput label="Password" placeholder="******" type="password" onChange={(e) => {
                                     handleChange(e, "password");
                                 }}
                                 required={true}
                             />
                         </div>
                         <div className="pt-2 text-center text-slate-500">
-                            <AuthLink
-                                text="Don't have an account?"
-                                link="/signup"
-                                linkText="Signup"
+                            <AuthLink text="Don't have an account?" link="/signup" linkText="Signup"
                             />
                         </div>
-                        <AuthButton
-                            text="Signin"
-                            type="submit" 
-                            disabled={loading}  
-                        />
+                        <AuthButton text="Signin" type="submit" disabled={loading} />
                     </form>
                 </div>
             </div>
-            <div>
-                <Quote></Quote>
+            <div className="bg-slate-200 hidden lg:flex items-center justify-center">
+                <Quote />
             </div>
         </div>
     </>
