@@ -35,7 +35,11 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
             </h1>
 
             <div className="text-slate-500 mt-3 text-sm sm:text-base">
-              {new Date(blog.updatedAt).toLocaleDateString()}
+              {new Date(blog.updatedAt).toLocaleDateString('en-IN', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+              })}
             </div>
 
             <div className="prose max-w-none pt-6 text-base sm:text-lg leading-relaxed">
