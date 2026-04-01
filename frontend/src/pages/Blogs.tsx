@@ -86,7 +86,7 @@ export const Blogs = () => {
                         <Link key={blog.id} to={activeTab === "myBlogs" ? `/updateBlog/${blog.id}` : `/blog/${blog.id}`}>
                             <BlogCard
                                 title={blog.title}
-                                content={blog.content}
+                                content={getPreviewText(blog.content)}
                                 authorName={blog.author.name || "Anonymous"}
                                 publishedDate={new Date(blog.updatedAt).toLocaleDateString('en-IN', {
                                 day: 'numeric',
@@ -163,4 +163,17 @@ export const Blogs = () => {
             </div>
         </div>
     </div>
+}
+
+function getPreviewText(html: string, limit = 100) {
+  if (!html) return "";
+
+  const temp = document.createElement("div");
+  temp.innerHTML = html;
+
+  const text = temp.textContent || temp.innerText || "";
+
+  if (text.length <= limit) return text;
+
+  return text.slice(0, limit).trim() + "...";
 }

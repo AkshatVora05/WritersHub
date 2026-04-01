@@ -42,9 +42,10 @@ export const FullBlog = ({ blog }: { blog: Blog }) => {
               })}
             </div>
 
-            <div className="prose max-w-none pt-6 text-base sm:text-lg leading-relaxed">
-              {blog.content}
-            </div>
+            <div
+              className="prose max-w-none pt-6 text-base sm:text-lg leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: blog.content }}
+            />
           </div>
 
         </div>

@@ -66,9 +66,12 @@ export const CreateBlog = () => {
                         setTitle(e.target.value)
                     }} type="text" id="helper-text" aria-describedby="helper-text-explanation" className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 hover:border-black focus:outline-none" placeholder="Title" />                
                     <div className="mt-2">
-                        <TextEditor onChange={(value: string) => {
-                            setContent(value);
-                        }}></TextEditor>
+                        <TextEditor
+                            value={content}
+                            onChange={(value: string) => {
+                                setContent(value);
+                            }}
+                        ></TextEditor>
                         <div className="mt-3">
                             <div className="flex">
                                 <div>

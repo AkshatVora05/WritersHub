@@ -2,7 +2,15 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useEffect, useState } from "react";
 
-export const TextEditor = ({ onChange }: { onChange: (value: string) => void }) => {
+export const TextEditor = ({
+    value,
+    onChange,
+    disabled = false
+}: {
+    value?: string;
+    onChange: (value: string) => void;
+    disabled?: boolean;
+}) => {
     const [ isActive, setIsActive ] = useState<{
         bold: boolean,
         italic: boolean
@@ -13,7 +21,7 @@ export const TextEditor = ({ onChange }: { onChange: (value: string) => void }) 
 
     const editor = useEditor({
         extensions: [StarterKit],
-        content: "",
+        content: value || "",
         editorProps: {
             attributes: {
                 class:
@@ -52,6 +60,18 @@ export const TextEditor = ({ onChange }: { onChange: (value: string) => void }) 
             editor.off("transaction", update);
         };
     }, [editor]);
+
+    useEffect(() => {
+        if (editor && value !== editor.getHTML()) {
+            editor.commands.setContent(value || "");
+        }
+    }, [value, editor]);
+
+    useEffect(() => {
+        if (editor) {
+            editor.setEditable(!disabled);
+        }
+    }, [editor, disabled]);
 
     if (!editor) return null;
 

@@ -2,12 +2,13 @@ import { Appbar } from "../components/Appbar"
 import { useBlog, useGetMe } from "../hooks/index";
 import { AppbarSkeleton } from "../components/AppbarSkeleton";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState, type ChangeEvent, type ChangeEventHandler } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { BACKEND_URL } from "../config";
 import { EditorSkeleton } from "../components/EditorSkeleton";
 import { ConfirmModal } from "../components/ConfirmModal";
+import { TextEditor } from "../components/TextEditor";
 
 export const UpdateBlog = () => {
     const { isUserLoading, userData } = useGetMe();
@@ -159,9 +160,13 @@ export const UpdateBlog = () => {
                         setTitle(e.target.value);
                     }} disabled={!isEditing} type="text" id="helper-text" aria-describedby="helper-text-explanation" className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 hover:border-black focus:outline-none disabled:hover:border-gray-300" placeholder="Title" />                
                     <div className="mt-2">
-                        <TextEditor value={content} disabled={!isEditing} onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-                            setContent(e.target.value);
-                        }}></TextEditor>
+                        <TextEditor
+                            value={content}
+                            disabled={!isEditing}
+                            onChange={(value: string) => {
+                                setContent(value);
+                            }}
+                        ></TextEditor>
                         <div className="mt-3">
                             <div className="flex justify-between">
                                 <div className="flex">
@@ -212,26 +217,5 @@ export const UpdateBlog = () => {
                 if (actionType === 'delete') handleDelete();
             }}
         />
-    </div>
-}
-
-function TextEditor({ 
-    value,
-    onChange,
-    disabled
-}: { 
-    value: string,
-    onChange: ChangeEventHandler<HTMLTextAreaElement>,
-    disabled: boolean
-}) {
-    return <div>
-        <div className="w-full">
-            <div className="flex items-center justify-between">
-                <div className="w-full rounded-lg">
-                    <label className="sr-only">Publish post</label>
-                    <textarea value={value} onChange={onChange} disabled={disabled} id="editor" rows={8} className="block w-full px-0 text-sm text-gray-800 bg-white pl-2 border-gray-300 rounded-lg hover:border-black focus:outline-none disabled:hover:border-gray-300" placeholder="Write a blog..." required ></textarea>
-                </div>
-            </div>
-        </div>
     </div>
 }
