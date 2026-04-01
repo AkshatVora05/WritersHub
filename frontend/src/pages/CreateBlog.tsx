@@ -1,13 +1,14 @@
 import axios, { AxiosError } from "axios"
 import { BACKEND_URL } from "../config"
-import { useState, type ChangeEvent, type ChangeEventHandler } from "react"
+import { useState, type ChangeEvent } from "react"
 import toast from "react-hot-toast";
 import { Appbar } from "../components/Appbar";
-import { useGetMe } from "../hooks/indes";
+import { useGetMe } from "../hooks/index";
 import { AppbarSkeleton } from "../components/AppbarSkeleton";
 import { ConfirmModal } from "../components/ConfirmModal";
 import { useNavigate } from "react-router-dom";
 import { CreateBlogSkeleton } from "../components/CreateBlogSkeleton";
+import { TextEditor } from "../components/TextEditor";
 
 export const CreateBlog = () => {
     const [ title, setTitle ] = useState<string>("");
@@ -65,8 +66,8 @@ export const CreateBlog = () => {
                         setTitle(e.target.value)
                     }} type="text" id="helper-text" aria-describedby="helper-text-explanation" className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 hover:border-black focus:outline-none" placeholder="Title" />                
                     <div className="mt-2">
-                        <TextEditor onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-                            setContent(e.target.value);
+                        <TextEditor onChange={(value: string) => {
+                            setContent(value);
                         }}></TextEditor>
                         <div className="mt-3">
                             <div className="flex">
@@ -103,18 +104,5 @@ export const CreateBlog = () => {
                 if (actionType === 'draft') publishBlog({ publish: false });
             }}
         />
-    </div>
-}
-
-function TextEditor({ onChange }: {onChange: ChangeEventHandler<HTMLTextAreaElement>}) {
-    return <div>
-        <div className="w-full">
-            <div className="flex items-center justify-between">
-                <div className="w-full rounded-lg">
-                    <label className="sr-only">Publish post</label>
-                    <textarea onChange={onChange} id="editor" rows={8} className="block w-full px-0 text-sm text-gray-800 bg-white pl-2 border-gray-300 rounded-lg hover:border-black focus:outline-none" placeholder="Write a blog..." required ></textarea>
-                </div>
-            </div>
-        </div>
     </div>
 }

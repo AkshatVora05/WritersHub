@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* 1. Add the Flowbite plugin */
+@plugin "@tailwindcss/typography";
+
 @plugin "flowbite/plugin";
 
-/* 2. Tell Tailwind to scan Flowbite's code for utility classes */
 @source "../node_modules/flowbite";

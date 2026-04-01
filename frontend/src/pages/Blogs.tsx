@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Appbar } from "../components/Appbar"
 import { BlogCard } from "../components/BlogCard"
-import { useBlogs, useGetMe, useUsersBlogs } from "../hooks/indes"
+import { useBlogs, useGetMe, useUsersBlogs } from "../hooks/index"
 import { Link } from "react-router-dom";
 import { BlogsSkeleton } from "../components/BlogsSkeleton";
 import { AppbarSkeleton } from "../components/AppbarSkeleton";

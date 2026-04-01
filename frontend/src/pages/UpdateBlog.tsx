@@ -1,5 +1,5 @@
 import { Appbar } from "../components/Appbar"
-import { useBlog, useGetMe } from "../hooks/indes";
+import { useBlog, useGetMe } from "../hooks/index";
 import { AppbarSkeleton } from "../components/AppbarSkeleton";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, type ChangeEvent, type ChangeEventHandler } from "react";

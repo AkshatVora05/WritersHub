@@ -1,4 +1,4 @@
-import type { Blog } from "../hooks/indes"
+import type { Blog } from "../hooks/index"
 import { Avatar } from "./Avatar"
 
 export const FullBlog = ({ blog }: { blog: Blog }) => {
